@@ -149,7 +149,8 @@ public class FloatLabelTextField: UITextField {
         if !(text?.isEmpty ?? true){
             var top = ceil(title.font.lineHeight + hintYPadding)
             top = min(top, maxTopInset())
-            r = UIEdgeInsetsInsetRect(r, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0))
+            let margin = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
+            r = r.inset(by: margin)
         }
         return r.integral
     }
@@ -159,7 +160,8 @@ public class FloatLabelTextField: UITextField {
         if !(text?.isEmpty ?? true) {
             var top = ceil(title.font.lineHeight + hintYPadding)
             top = min(top, maxTopInset())
-            r = UIEdgeInsetsInsetRect(r, UIEdgeInsetsMake(top, 0.0, 0.0, 0.0))
+            let margin = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
+            r = r.inset(by: margin)
         }
         return r.integral
     }
@@ -176,7 +178,7 @@ public class FloatLabelTextField: UITextField {
     
     // MARK:- Private Methods
     private func setup() {
-        borderStyle = UITextBorderStyle.none
+        borderStyle = UITextField.BorderStyle.none
         titleCustomActiveTextColour = tintColor
         // Set up title label
         title.alpha = 0.0
@@ -206,7 +208,7 @@ public class FloatLabelTextField: UITextField {
     
     private func showTitle(_ animated:Bool) {
         let dur = animated ? animationDuration : 0
-        UIView.animate(withDuration: dur, delay:0, options: UIViewAnimationOptions.beginFromCurrentState.union(.curveEaseOut), animations:{
+        UIView.animate(withDuration: dur, delay:0, options: UIView.AnimationOptions.beginFromCurrentState.union(.curveEaseOut), animations:{
             // Animation
             self.title.alpha = 1.0
             var r = self.title.frame
@@ -217,7 +219,7 @@ public class FloatLabelTextField: UITextField {
     
     private func hideTitle(_ animated:Bool) {
         let dur = animated ? animationDuration : 0
-        UIView.animate(withDuration: dur, delay:0, options: UIViewAnimationOptions.beginFromCurrentState.union(.curveEaseIn), animations:{
+        UIView.animate(withDuration: dur, delay:0, options: UIView.AnimationOptions.beginFromCurrentState.union(.curveEaseIn), animations:{
             // Animation
             self.title.alpha = 0.0
             var r = self.title.frame
